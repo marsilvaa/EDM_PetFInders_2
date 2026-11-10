@@ -23,11 +23,11 @@
     ]
   },
   {
-    "objectID": "entregas/PCA.html#carga-de-librerías-y-datos",
-    "href": "entregas/PCA.html#carga-de-librerías-y-datos",
+    "objectID": "entregas/PCA.html#introducción",
+    "href": "entregas/PCA.html#introducción",
     "title": "Análisis de Componentes Principales",
-    "section": "2.1 Carga de librerías y datos",
-    "text": "2.1 Carga de librerías y datos\n\n\nVer código\nlibrary(here)\nlibrary(ggplot2)\nlibrary(plotly)\nlibrary(ggrepel)\nlibrary(factoextra)\nlibrary(FactoMineR)\n\n# Cargamos la tabla de datos enriquecida\npetfinder_enriquecido_final &lt;- read.csv(\n  file.path(here(), \"data\", \"petfinder_enriquecido_final.csv\")\n)\n\nn &lt;- nrow(petfinder_enriquecido_final)",
+    "section": "1 Introducción",
+    "text": "1 Introducción\nA continuación se presenta el análisis de componentes principales implementado sobre las variables cuantitativas del conjunto de datos PetFinder.",
     "crumbs": [
       "Inicio",
       "Entrega 02",
@@ -35,11 +35,11 @@
     ]
   },
   {
-    "objectID": "entregas/PCA.html#variables-activas",
-    "href": "entregas/PCA.html#variables-activas",
+    "objectID": "entregas/PCA.html#preparación-de-los-datos",
+    "href": "entregas/PCA.html#preparación-de-los-datos",
     "title": "Análisis de Componentes Principales",
-    "section": "3.1 Variables activas",
-    "text": "3.1 Variables activas\n\n\nVer código\nvars_activas &lt;- c(\n  'PhotoAmt',\n  'sentiment_score',\n  'sentiment_magnitude',\n  'total_labels',\n  'total_colors',\n  'desc_char_len',\n  'desc_word_count'\n)\n\n\nLas variables elegidas para ser partícipes de la construcción de los ejes del plano factorial nuevo fueron PhotoAmt, sentiment_score, sentiment_magnitude, total_labels, total_colors, desc_char_len y desc_word_count. Todas las anteriores tienen en común que son métricas asociadas al anuncio elaborado por los rescatistas sobre las mascotas que ofrecen en adopción mediante la plataforma PetFinder. La razón por la cual se decide emplear esta agrupación de variables, es porque las variables PhotoAmt, total_labels y total_colors se refieren a las características de las fotos que subieron los rescatistas al anuncio, mientras que las variables sentiment_score, sentiment_magnitude, desc_char_len y desc_word_count están relacionadas con el texto que escribieron. Las 7 variables se relacionan con la elaboración y contenido del anuncio, características que reflejan la cantidad y el tipo de información que los rescatistas incorporaron en la elaboración del anuncio.",
+    "section": "2 Preparación de los datos",
+    "text": "2 Preparación de los datos\n\n2.1 Carga de librerías y datos\n\n\nVer código\nlibrary(here)\nlibrary(ggplot2)\nlibrary(plotly)\nlibrary(ggrepel)\nlibrary(factoextra)\nlibrary(FactoMineR)\n\n# Cargamos la tabla de datos enriquecida\npetfinder_enriquecido_final &lt;- read.csv(\n  file.path(here(), \"data\", \"petfinder_enriquecido_final.csv\")\n)\n\nn &lt;- nrow(petfinder_enriquecido_final)",
     "crumbs": [
       "Inicio",
       "Entrega 02",
@@ -47,11 +47,23 @@
     ]
   },
   {
-    "objectID": "entregas/PCA.html#variables-suplementarias",
-    "href": "entregas/PCA.html#variables-suplementarias",
+    "objectID": "entregas/PCA.html#selección-de-variables-activas-y-suplementarias",
+    "href": "entregas/PCA.html#selección-de-variables-activas-y-suplementarias",
     "title": "Análisis de Componentes Principales",
-    "section": "3.2 Variables suplementarias",
-    "text": "3.2 Variables suplementarias\n\n\nVer código\nvars_sup &lt;- c('Age', 'Quantity', 'Fee')\ncuantitativas &lt;- c(vars_activas, vars_sup)\n\n\nLas variables suplementarias Age, Quantity y Fee representan características externas a la construcción del anuncio, son propias del animal o de las condiciones de adopción y se proyectan posteriormente para evaluar su relación con la estructura identificada.",
+    "section": "3 Selección de variables activas y suplementarias",
+    "text": "3 Selección de variables activas y suplementarias\n\n3.1 Variables activas\n\n\nVer código\nvars_activas &lt;- c(\n  'PhotoAmt',\n  'sentiment_score',\n  'sentiment_magnitude',\n  'total_labels',\n  'total_colors',\n  'desc_char_len',\n  'desc_word_count'\n)\n\n\nLas variables elegidas para ser partícipes de la construcción de los ejes del plano factorial nuevo fueron PhotoAmt, sentiment_score, sentiment_magnitude, total_labels, total_colors, desc_char_len y desc_word_count. Todas las anteriores tienen en común que son métricas asociadas al anuncio elaborado por los rescatistas sobre las mascotas que ofrecen en adopción mediante la plataforma PetFinder. La razón por la cual se decide emplear esta agrupación de variables, es porque las variables PhotoAmt, total_labels y total_colors se refieren a las características de las fotos que subieron los rescatistas al anuncio, mientras que las variables sentiment_score, sentiment_magnitude, desc_char_len y desc_word_count están relacionadas con el texto que escribieron. Las 7 variables se relacionan con la elaboración y contenido del anuncio, características que reflejan la cantidad y el tipo de información que los rescatistas incorporaron en la elaboración del anuncio.\n\n\n3.2 Variables suplementarias\n\n\nVer código\nvars_sup &lt;- c('Age', 'Quantity', 'Fee')\ncuantitativas &lt;- c(vars_activas, vars_sup)\n\n\nLas variables suplementarias Age, Quantity y Fee representan características externas a la construcción del anuncio, son propias del animal o de las condiciones de adopción y se proyectan posteriormente para evaluar su relación con la estructura identificada.",
+    "crumbs": [
+      "Inicio",
+      "Entrega 02",
+      "Análisis de Componentes Principales"
+    ]
+  },
+  {
+    "objectID": "entregas/PCA.html#tratamiento-de-los-valores-faltantes",
+    "href": "entregas/PCA.html#tratamiento-de-los-valores-faltantes",
+    "title": "Análisis de Componentes Principales",
+    "section": "4 Tratamiento de los valores faltantes",
+    "text": "4 Tratamiento de los valores faltantes\n\n\nVer código\n# Identificadores de las mascotas\nids &lt;- petfinder_enriquecido_final$PetID\nrownames(petfinder_enriquecido_final) &lt;- ids\n\n# Conjunto de datos con las variables cuantitativas\npetfinder_cuantis &lt;- petfinder_enriquecido_final[, cuantitativas]\n\n# Número total de valores faltantes\nsum(is.na(petfinder_enriquecido_final))\n\n\n[1] 3382\n\n\nVer código\n# Variables con valores faltantes\nvars_na &lt;- names(\n  which(colSums(is.na(petfinder_cuantis)) &gt; 0)\n)\n\nvars_na\n\n\n[1] \"sentiment_score\"     \"sentiment_magnitude\" \"total_labels\"       \n[4] \"total_colors\"",
     "crumbs": [
       "Inicio",
       "Entrega 02",
