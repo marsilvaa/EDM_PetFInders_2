@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./entregas/analisis_correspondencias.html" rel="next">
+<link href="./entregas/PCA.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -313,8 +313,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Análisis de Componentes Principales</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./entregas/analisis_correspondencias.html">
+    <a class="dropdown-item" href="./entregas/ACS.html">
  <span class="dropdown-text">Análisis de Correspondencias Simple</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./entregas/ACM.html">
+ <span class="dropdown-text">Análisis de Correspondencias Múltiples</span></a>
   </li>  
     </ul>
   </li>
@@ -382,14 +386,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./entregas/analisis_correspondencias.html" class="sidebar-item-text sidebar-link">
+  <a href="./entregas/PCA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ACP: Análisis de Componentes Principales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./entregas/ACS.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EACS: Análisis de correspondencias simple</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./entregas/PCA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Análisis de Componentes Principales</span></a>
+  <a href="./entregas/ACM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ACM: Análisis de correspondencias múltiples</span></a>
   </div>
 </li>
       </ul>
@@ -441,8 +451,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="card-grid">
+<section id="análisis-de-componentes-principales" class="level3 card">
+<h3 class="anchored" data-anchor-id="análisis-de-componentes-principales"><a href="./entregas/PCA.html">Análisis de componentes principales</a></h3>
+</section>
 <section id="análisis-de-correspondencias-simple" class="level3 card">
-<h3 class="anchored" data-anchor-id="análisis-de-correspondencias-simple"><a href="./entregas/analisis_correspondencias.html">Análisis de correspondencias simple</a></h3>
+<h3 class="anchored" data-anchor-id="análisis-de-correspondencias-simple"><a href="./entregas/ACS.html">Análisis de correspondencias simple</a></h3>
+</section>
+<section id="análisis-de-correspondencias-múltiples" class="level3 card">
+<h3 class="anchored" data-anchor-id="análisis-de-correspondencias-múltiples"><a href="./entregas/ACM.html">Análisis de correspondencias múltiples</a></h3>
 </section>
 <section id="acerca-de" class="level3 card">
 <h3 class="anchored" data-anchor-id="acerca-de"><a href="./about.html">Acerca de</a></h3>
@@ -929,8 +945,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./entregas/analisis_correspondencias.html" class="pagination-link" aria-label="EACS: Análisis de correspondencias simple">
-        <span class="nav-page-text">EACS: Análisis de correspondencias simple</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./entregas/PCA.html" class="pagination-link" aria-label="ACP: Análisis de Componentes Principales">
+        <span class="nav-page-text">ACP: Análisis de Componentes Principales</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -942,14 +958,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>::: {.card-grid}</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Análisis de correspondencias simple](entregas/analisis_correspondencias.qmd)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Análisis de componentes principales](entregas/PCA.qmd)</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Acerca de](about.qmd)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Análisis de correspondencias simple](entregas/ACS.qmd)</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Análisis de correspondencias múltiples](entregas/ACM.qmd)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Acerca de](about.qmd)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
