@@ -601,7 +601,11 @@ fig
 
 ```
 
-El plano factorial de variables construido con los tres componentes principales nos permite visualizar las direcciones y magnitudes de asociación de las variables desde diferentes ángulos. Es así como podemos describir las relaciones de las variables en términos de los planos de los pares de componentes PC1y PC2; PC2 y PC3; PC1 y PC3. Ya hemos descrito el plano del primer par entonces se describirán los siguientes dos. Para el plano de los componentes PC2 y PC3 se puede apreciar que las variables *total_labels*, *total_colors* y *PhotoAmt* tienen una fuerte asociación negativa con el PC2, 
+El plano factorial de variables construido con los tres componentes principales nos permite visualizar las direcciones y magnitudes de asociación de las variables desde diferentes ángulos. Es así como podemos describir las relaciones de las variables en términos de los planos de los pares de componentes PC1y PC2; PC2 y PC3; PC1 y PC3.
+
+ Ya hemos descrito el plano del primer par entonces se describirán los siguientes dos. Para el plano de los componentes PC2 y PC3 se puede apreciar que las variables *total_labels*, *total_colors* y *PhotoAmt* tienen una fuerte asociación negativa con el PC2, mientras que las variables *desc_word_count* y *desc_char_len* tienen una fuerte asociación positiva con este mismo componente. Esto sugiere que el PC2 hace un contraste entre las variables asociadas a las imágenes y las asociadas al texto de las descripciones en los anuncios. Por otra parte, *sentiment_score* parece ser ortogonal a las variables anteriores con una fuerte asociación negativa con el PC3. Esto podría indicar que el componente 3 está capturando una dimensión de la polaridad del sentimiento, que no es explicada por PC2. 
+
+ Para el plano de los componentes PC1 y PC3, se tiene que las variables *total_labels*, *total_colors*, *PhotoAmt*, *desc_word_count* y *desc_char_len* tienen una fuerte asociación positiva con el PC1, mientras que la variable *sentiment_magnitude* presenta una correlación positiva moderada con el PC1 y una positiva débil con el PC3. Por otra parte, la variable *sentiment_score* tiene una correlación negativa fuerte con el PC3, como se había visto para el plano anterior. Lo anterior sugiere que el PC1 captura la dimensión de la elaboración del anuncio mientras que PC3 representa la polaridad de sentimiento que este puede transmitir.
 
 **Proyección de las variables suplementarias sobre los tres componentes principales**
 
@@ -769,6 +773,8 @@ fig
 ```
 
 
+Con la proyección de las variables suplementarias sobre el plano factorial construido con los tres componententes principales, es notorio que ninguna de ellas consigue relacionarse de manera relevante con alguno de los ejes en ninguno de los planos visualizados. 
+
 **Proyección de algunas variables cualitativas sobre el plano factorial**
 
 Ya que se construyó un plano factorial con las variables cuantitativas activas, es posible estudiar si algunas de las variables cualitativas del conjunto de datos exhiben alguna relación con la variabilidad capturada por los componentes principales. Esto se realiza mediante la proyección de estas variables cualitativas sobre el plano factorial construido con las variables seleccionadas como activas.
@@ -817,6 +823,8 @@ fviz_pca_ind(
   theme_minimal()
 ```
 
+Dado que las proyecciones de las categorías de la variable `AdoptionSpeed` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos.
+
 **Proyección de la variable `Vaccinated` sobre el plano factorial**
 
 ```{r}
@@ -862,10 +870,12 @@ fviz_pca_ind(
   theme_minimal()
 ```
 
+Dado que las proyecciones de las categorías de la variable `Vaccinated` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos.
+
 **Proyección de `FurLength` sobre el plano factorial**
 
 ```{r}
-var_cuali3  <- c('AdoptionSpeed')          # podés sumar 'AdoptionSpeed', 'Breed1', etc.
+var_cuali3  <- c('FurLength')          # podés sumar 'AdoptionSpeed', 'Breed1', etc.
 
 cols_pca <- c(vars_activas, vars_sup, var_cuali3)
 
@@ -907,3 +917,4 @@ fviz_pca_ind(
   theme_minimal()
 ```
 
+Dado que las proyecciones de las categorías de la variable `FurLength` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos.
