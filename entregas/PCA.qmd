@@ -823,7 +823,7 @@ fviz_pca_ind(
   theme_minimal()
 ```
 
-Dado que las proyecciones de las categorías de la variable `AdoptionSpeed` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos.
+Dado que las proyecciones de las categorías de la variable `AdoptionSpeed` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos y seleccionados.
 
 **Proyección de la variable `Vaccinated` sobre el plano factorial**
 
@@ -870,7 +870,7 @@ fviz_pca_ind(
   theme_minimal()
 ```
 
-Dado que las proyecciones de las categorías de la variable `Vaccinated` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos.
+Dado que las proyecciones de las categorías de la variable `Vaccinated` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos y seleccionados.
 
 **Proyección de `FurLength` sobre el plano factorial**
 
@@ -917,4 +917,4 @@ fviz_pca_ind(
   theme_minimal()
 ```
 
-Dado que las proyecciones de las categorías de la variable `FurLength` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos.
+Dado que las proyecciones de las categorías de la variable `FurLength` sobre el plano factorial se encuentran sobre el origen, se puede decir que no se relacionan con los componentes principales construidos y seleccionados.
