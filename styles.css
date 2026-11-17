@@ -1368,7 +1368,8 @@ html[data-bs-theme="dark"] thead {
   }
 
   /* Muestra la URL destino de los enlaces externos */
-  a[href^="http"]::after {
+/* Muestra la URL destino de los enlaces externos (excepto anclas del código) */
+  a[href^="http"]:not(.sourceLine)::after {
     content: " <" attr(href) ">";
     font-size: 8pt;
     color: #555555;
