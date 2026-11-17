@@ -74,7 +74,6 @@ format:
     toc-location: right
     toc-title: "En esta página"
     number-sections: false
-    code-fold: true
     code-summary: "Ver código"
     code-tools: true
     code-copy: true
