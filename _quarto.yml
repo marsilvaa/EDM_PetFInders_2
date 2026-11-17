@@ -11,6 +11,9 @@ project:
     - "!EDM_PetFInder/**"
     - "!_borradores/**"
 
+execute:
+  echo: true
+
 website:
   title: "EDM_segundaEntrega"
   page-navigation: true
@@ -60,6 +63,8 @@ lang: es
 
 format:
   html:
+    code-fold: false
+    code-overflow: wrap
     theme:
       light: cosmo
       dark: darkly

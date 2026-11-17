@@ -125,7 +125,7 @@ Se visualizó la matriz de individuos con las columnas *Description*, *sentiment
 ```{r}
 #| label: tbl-na-sentiment
 #| tbl-cap: "Descripciones sin valores de `sentiment_score` y `sentiment_magnitude` (primeras seis observaciones)."
-#| echo: false
+#| echo: true
 #| message: false
 
 na_sentiment_score_magnitude <- petfinder_enriquecido_final |> filter(is.na(sentiment_score)) |> select(Description, sentiment_score, sentiment_magnitude)
@@ -148,7 +148,7 @@ Al indagar sobre la estructura de estas descripciones con valores faltantes, se 
 ```{r}
 #| label: tbl-frec-especiales
 #| tbl-cap: "Diez caracteres especiales más frecuentes entre las descripciones sin puntaje de sentimiento."
-#| echo: false
+#| echo: true
 # Descripciones con caracteres especiales (sin contar puntuación)
 patron <- "[^a-zA-Z0-9\\s\\p{P}]"
 idx_special <- str_detect(na_sentiment_score_magnitude$Description, patron)
@@ -184,7 +184,7 @@ Se visualizó la matriz de individuos con las variables *PhotoAmt*, *total_color
 ```{r}
 #| label: tbl-na-labels-colors
 #| tbl-cap: "Observaciones sin `total_labels` ni `total_colors` (primeras seis)."
-#| echo: false
+#| echo: true
 na_total_labels_colors <- petfinder_enriquecido_final |> filter(is.na(total_labels)) |> select(PhotoAmt, total_labels, total_colors)
 
 na_total_labels_colors |>
@@ -201,7 +201,7 @@ na_total_labels_colors |>
 ```{r}
 #| label: tbl-resumen-labels-colors
 #| tbl-cap: "Resumen de las observaciones con `total_labels` faltante."
-#| echo: false
+#| echo: true
 
 tibble(
   Variable = c("PhotoAmt", "total_labels", "total_colors"),
@@ -222,10 +222,9 @@ En la tabla resumen se evidencia que los individuos con valores faltantes en las
 
 Identificada la causa de la ocurrencia de los valores faltantes, es claro que no es viable realizar una imputación de los mismos. Por lo tanto, para la construcción de los ejes del nuevo plano factorial solo se tendrán en consideración los individuos asociados con descripciones correctamente procesadas por la API de Google y con imágenes disponibles.
 
-
 ```{r}
 #| label: número-de-individuos-descartados
-#| echo: false
+#| echo: true
 
 # Todos los individuos que contienen al menos un valor faltante para las 4 variables de interés
 na_ind <- petfinder_cuantis %>%
@@ -241,9 +240,10 @@ n_na/n
 Se estarían descartando un total de 882 individuos que representan aproximadamente el 5,8% del total de individuos. En ese orden de ideas, los ejes del nuevo plano factorial se construyen con la información de 14111 individuos.
 
 # ACP normado
+
 Una vez filtrada la matriz numérica, se realiza la respectiva implementación del algoritmo para la construcción de los siete ejes. Como se cuenta con variables cuantitativas medidas en diferentes escalas, fue necesario hacer la respectiva estandarización de la matriz numérica. En ese orden de ideas, los valores y vectores propios se calculan a partir de la matriz correlaciones.
 
-::: {layout-ncol=2}
+::: {layout-ncol="2"}
 ```{r}
 #| label: implementación pca sobre matriz limpia, calculo de valores propios
 #| tbl-cap: "Valores propios calculados y su proporción de varianza explicada y varianza explicada acumulada"
@@ -325,7 +325,7 @@ Se tiene que los tres primeros valores propios son mayores que uno. La proporci�
 ```{r}
 #| label: tbl-coord-variables
 #| tbl-cap: "Coordenadas de las variables en las tres primeras componentes principales."
-#| echo: false
+#| echo: true
 coord_variables <- t(t(pca$rotation) * pca$sdev)[,1:3]
 coord_variables |>
   kbl(
@@ -338,13 +338,13 @@ coord_variables |>
 ```
 
 Las coordenadas de las variables sobre los ejes principales representan su correlación con estos. Para los primeros dos componentes principales, las variables no muestran correlaciones (y direcciones) muy similares, sin embargo, se observa que para el componente principal uno, las variables *PhotoAmt*, *total_labels* y *total_colors* predominan con una correlación positiva de 0,828. En cambio, en el componente principal dos, las variables *desc_char_len* y *desc_word_count* destacan con unas correlaciones positivas de 0,622 y 0,627 respectivamente. Por otro lado, en el último eje la variable *sentiment_score* tiene una baja correlación tanto para el primer como el segundo eje mientras que para el tercer componente principal tiene una alta correlación negativa de -0.982. En contraste, el resto de variables tienen una débil correlación con este componente. Lo anterior sugiere que los grupos de variables *PhotoAmt*, *total_labels*, *total_colors* y *desc_char_len*, *desc_word_count* están fuertemente correlacionadas entre sí y tienen un comportamiento similar. Esto podría ser una señal de redundancia en la información que están aportando. Además, el tercer componente está asociado únicamente con la variable *sentiment_score*.
- 
+
 **Contribución porcentual de las variables a los componentes principales**
 
 ```{r}
 #| label: tbl-contrib-porcentaje
 #| tbl-cap: "Contribución porcentual de cada variable a las componentes principales."
-#| echo: false
+#| echo: true
 # Extraer los autovectores (rotation)
 vectores <- pca$rotation
 
@@ -365,7 +365,7 @@ contrib_porcentaje |>
   kable_styling(latex_options = c("hold_position", "scale_down"), full_width = FALSE)
 ```
 
-::: {layout-ncol=3}
+::: {layout-ncol="3"}
 ```{r}
 # Para PC1
 fviz_contrib(
@@ -410,14 +410,13 @@ fviz_contrib(
     y = "Contribución (%)"
   )
 ```
-
 :::
 
 Los gráficos de barras enseñan la contribución porcentual de cada una de las variables en la construcción de los componentes principales. Aquí, la línea roja representa un umbral que indica la contribución esperada si todas las variables aportaran por igual. Se puede ver que para el componente principal uno, las variables `PhotoAmt`, `total_labels` y `total_colors` son las mayores contribuyentes, mientras que para el componente principal dos, las variables cuya participación fue mayor en la construcción del componente fueron `desc_word_count`, `desc_char_len` y `sentiment_magnitude`. En cambio, para el tercer componente principal, se puede decir que la única variable contribuyente es `sentiment_score` ya que las contribuciones de las demás son despreciables.
 
 **Contribución absoluta (cos2) de las variables a cada componente principal**
 
-::: {layout-ncol=2}
+::: {layout-ncol="2"}
 ```{r}
 contrib_absoluta <- coord_variables^2
 contrib_absoluta |>
@@ -497,7 +496,6 @@ plot1 + geom_segment(
 En el círculo unitario se tienen las variables suplementarias representadas con sus coordenadas proyectadas sobre el plano factorial construido con las variables activas. Se evidencia que la variable `Age` aparece muy cerca del origen con dirección hacia arriba. Esto sugiere que tiene una relación muy débil con los primeros dos componentes principales, aunque ligeramente positiva con el componente principal dos. La variable `Quantity` se poryecta ligramente hacia la derecha y hacia abajo. Esto indica una asociación positiva débil con PC1 y una asociación negativa débil con PC2. Al estar cerca al origen se puede decir que su representación en este plano es limitada. Por último, en el caso de la variable `Fee` se puede decir que su correlación con PC1 y PC2 es prácticamente nula al estar sobre el origen directamente. Esto nos indica que no es posible realizar interpretaciones sobre las variables suplementarias con la información proporcionada por los primeros dos componentes.
 
 **Correlaciones de las variables sobre los primeros tres componentes principales**
-
 
 ```{r}
 esfera_vars <- data.frame(
@@ -603,9 +601,9 @@ fig
 
 El plano factorial de variables construido con los tres componentes principales nos permite visualizar las direcciones y magnitudes de asociación de las variables desde diferentes ángulos. Es así como podemos describir las relaciones de las variables en términos de los planos de los pares de componentes PC1y PC2; PC2 y PC3; PC1 y PC3.
 
- Ya hemos descrito el plano del primer par entonces se describirán los siguientes dos. Para el plano de los componentes PC2 y PC3 se puede apreciar que las variables *total_labels*, *total_colors* y *PhotoAmt* tienen una fuerte asociación negativa con el PC2, mientras que las variables *desc_word_count* y *desc_char_len* tienen una fuerte asociación positiva con este mismo componente. Esto sugiere que el PC2 hace un contraste entre las variables asociadas a las imágenes y las asociadas al texto de las descripciones en los anuncios. Por otra parte, *sentiment_score* parece ser ortogonal a las variables anteriores con una fuerte asociación negativa con el PC3. Esto podría indicar que el componente 3 está capturando una dimensión de la polaridad del sentimiento, que no es explicada por PC2. 
+Ya hemos descrito el plano del primer par entonces se describirán los siguientes dos. Para el plano de los componentes PC2 y PC3 se puede apreciar que las variables *total_labels*, *total_colors* y *PhotoAmt* tienen una fuerte asociación negativa con el PC2, mientras que las variables *desc_word_count* y *desc_char_len* tienen una fuerte asociación positiva con este mismo componente. Esto sugiere que el PC2 hace un contraste entre las variables asociadas a las imágenes y las asociadas al texto de las descripciones en los anuncios. Por otra parte, *sentiment_score* parece ser ortogonal a las variables anteriores con una fuerte asociación negativa con el PC3. Esto podría indicar que el componente 3 está capturando una dimensión de la polaridad del sentimiento, que no es explicada por PC2.
 
- Para el plano de los componentes PC1 y PC3, se tiene que las variables *total_labels*, *total_colors*, *PhotoAmt*, *desc_word_count* y *desc_char_len* tienen una fuerte asociación positiva con el PC1, mientras que la variable *sentiment_magnitude* presenta una correlación positiva moderada con el PC1 y una positiva débil con el PC3. Por otra parte, la variable *sentiment_score* tiene una correlación negativa fuerte con el PC3, como se había visto para el plano anterior. Lo anterior sugiere que el PC1 captura la dimensión de la elaboración del anuncio mientras que PC3 representa la polaridad de sentimiento que este puede transmitir.
+Para el plano de los componentes PC1 y PC3, se tiene que las variables *total_labels*, *total_colors*, *PhotoAmt*, *desc_word_count* y *desc_char_len* tienen una fuerte asociación positiva con el PC1, mientras que la variable *sentiment_magnitude* presenta una correlación positiva moderada con el PC1 y una positiva débil con el PC3. Por otra parte, la variable *sentiment_score* tiene una correlación negativa fuerte con el PC3, como se había visto para el plano anterior. Lo anterior sugiere que el PC1 captura la dimensión de la elaboración del anuncio mientras que PC3 representa la polaridad de sentimiento que este puede transmitir.
 
 **Proyección de las variables suplementarias sobre los tres componentes principales**
 
@@ -772,8 +770,7 @@ fig <- fig %>%
 fig
 ```
 
-
-Con la proyección de las variables suplementarias sobre el plano factorial construido con los tres componententes principales, es notorio que ninguna de ellas consigue relacionarse de manera relevante con alguno de los ejes en ninguno de los planos visualizados. 
+Con la proyección de las variables suplementarias sobre el plano factorial construido con los tres componententes principales, es notorio que ninguna de ellas consigue relacionarse de manera relevante con alguno de los ejes en ninguno de los planos visualizados.
 
 **Proyección de algunas variables cualitativas sobre el plano factorial**
 

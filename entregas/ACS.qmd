@@ -20,7 +20,7 @@ PDF
 
 ```{r}
 #| label: setup
-#| echo: false
+#| echo: true
 #| include: false
 # Carga de datos y ayudantes comunes del sitio
 source(here::here("_setup.R"))
@@ -242,7 +242,7 @@ En números, el marginal es 48,54 % hembras, 36,92 % machos y 14,54 % mixtos. En
 
 ```{r}
 #| label: acs-calculo
-#| echo: false
+#| echo: true
 res_breed  <- acs(table(datos$AdoptionSpeed_agrupada, datos$Breed1_agrupada))
 res_color  <- acs(table(datos$AdoptionSpeed_agrupada, datos$Color1_agrupada))
 res_vac    <- acs(table(datos$AdoptionSpeed_agrupada, datos$Vaccinated))
@@ -251,7 +251,7 @@ res_gender <- acs(table(datos$AdoptionSpeed_agrupada, datos$Gender))
 
 ```{r}
 #| label: acs-resumen
-#| echo: false
+#| echo: true
 resumen <- tibble::tibble(
   Variable = c("Breed1 (agrupada)", "Color1 (agrupada)", "Vaccinated", "Gender"),
   `χ²` = fmt(c(res_breed$chi$statistic, res_color$chi$statistic,
