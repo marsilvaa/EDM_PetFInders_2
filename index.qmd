@@ -3,22 +3,24 @@ title: "EDM_segundaEntrega"
 toc: false
 ---
 
-::: {.card-grid}
+Video: <https://youtu.be/Fs3tYauAQjc>
 
-::: {.card}
+Documento: <https://marsilvaa.github.io/EDM_PetFInders_2/>
+
+::::::: card-grid
+::: card
 ### [Análisis de componentes principales](entregas/PCA.qmd)
 :::
 
-::: {.card}
+::: card
 ### [Análisis de correspondencias simple](entregas/ACS.qmd)
 :::
 
-::: {.card}
+::: card
 ### [Análisis de correspondencias múltiples](entregas/ACM.qmd)
 :::
 
-::: {.card}
+::: card
 ### [Acerca de](about.qmd)
 :::
-
-:::
+:::::::
