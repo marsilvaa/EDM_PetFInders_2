@@ -11,9 +11,6 @@ project:
     - "!EDM_PetFInder/**"
     - "!_borradores/**"
 
-execute:
-  echo: true
-
 website:
   title: "EDM_segundaEntrega"
   page-navigation: true
