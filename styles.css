@@ -1367,19 +1367,6 @@ html[data-bs-theme="dark"] thead {
     text-decoration: underline;
   }
 
-  /* Muestra la URL destino de los enlaces externos */
-/* Muestra la URL destino de los enlaces externos (excepto anclas del código) */
-  a[href^="http"]:not(.sourceLine)::after {
-    content: " <" attr(href) ">";
-    font-size: 8pt;
-    color: #555555;
-  }
-
-  /* Nota: los enlaces internos del sitio no se expanden */
-  a[href^="#"]::after {
-    content: "";
-  }
-
   /* En la bibliografía el propio texto del enlace ya es la URL: no duplicar */
   .csl-entry a[href^="http"]::after {
     content: "";
