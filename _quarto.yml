@@ -77,7 +77,6 @@ format:
     code-summary: "Ver código"
     code-tools: true
     code-copy: true
-    code-overflow: wrap
     code-line-numbers: false
     highlight-style: github
     citations-hover: true
