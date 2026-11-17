@@ -380,6 +380,13 @@ a {
   font-weight: 500;
 }
 
+  a::after,
+  a[href]::after,
+  a.sourceLine::after,
+  .csl-entry a[href^="http"]::after {
+    content: none !important;
+  }
+
 a:hover {
   color: var(--color-accent);
   border-bottom-color: var(--color-accent);
@@ -463,6 +470,8 @@ pre {
   overflow-x: auto;
   font-size: 0.9rem;
   line-height: 1.6;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 pre code {
